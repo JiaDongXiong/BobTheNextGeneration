@@ -1,0 +1,41 @@
+
+    //RULES ARE DEFINED HERE BY FINAL USER
+}
+
+Goals {
+	moveEast(N) :- isIn(X,Y) & isNext(X,Z)     & moveFromTo(X,Y,Z,Y).
+	moveWest(N) :- isIn(X,Y) & isPrevious(X,Z) & moveFromTo(X,Y,Z,Y).
+	moveNorth(N)  :- isIn(X,Y) & isNext(Y,Z)     & moveFromTo(X,Y,X,Z).
+	moveSouth(N)  :- isIn(X,Y) & isPrevious(Y,Z) & moveFromTo(X,Y,X,Z).
+
+	stepOnBoatEast() :- isIn(X,Y) & isNext(X,Z)     & updateBoat(X,Y,Z,Y).
+	stepOnBoatWest()  :- isIn(X,Y) & isPrevious(X,Z) & updateBoat(X,Y,Z,Y).
+	stepOnBoatNorth()    :- isIn(X,Y) & isNext(Y,Z)     & updateBoat(X,Y,X,Z).
+	stepOnBoatSouth()  :- isIn(X,Y) & isPrevious(Y,Z) & updateBoat(X,Y,X,Z).
+	
+	pickUpLight() :- lights(X) & isNext(X,Y) & setLights(Y).
+    	stepOnLight() :- isIn(X, Y) & deleteLight(X, Y).
+    	wait(N) :- excludeAll().
+    	triggerUpdateWasIn() :- isIn(X, Y) & updateWasIn(X, Y).
+
+    	triggerUpdateNextIsE() :- isIn(X,Y) & isNext(X,Z)     & isNext(Z,P)     & updateNextIs(P,Y).
+	triggerUpdateNextIsW() :- isIn(X,Y) & isPrevious(X,Z) & isPrevious(Z,P) & updateNextIs(P,Y).
+	triggerUpdateNextIsN() :- isIn(X,Y) & isNext(Y,Z)     & isNext(Z,P)     & updateNextIs(X,P).
+	triggerUpdateNextIsS() :- isIn(X,Y) & isPrevious(Y,Z) & isPrevious(Z,P) & updateNextIs(X,P).
+
+	triggerUpdateLeftIsE() :- isIn(X,Y) & isNext(X,Z)     & isNext(Y,P)     & updateLeftIs(Z,P).
+	triggerUpdateLeftIsW() :- isIn(X,Y) & isPrevious(X,Z) & isPrevious(Y,P) & updateLeftIs(Z,P).
+	triggerUpdateLeftIsN() :- isIn(X,Y) & isPrevious(X,Z) & isNext(Y,P)     & updateLeftIs(Z,P).
+	triggerUpdateLeftIsS() :- isIn(X,Y) & isNext(X,Z)     & isPrevious(Y,P) & updateLeftIs(Z,P).
+
+
+	triggerUpdateRightIsE() :- isIn(X,Y) & isNext(X,Z)     & isPrevious(Y,P) & updateRightIs(Z,P).
+	triggerUpdateRightIsW() :- isIn(X,Y) & isPrevious(X,Z) & isNext(Y,P)     & updateRightIs(Z,P).
+	triggerUpdateRightIsN() :- isIn(X,Y) & isNext(X,Z)     & isNext(Y,P)     & updateRightIs(Z,P).
+	triggerUpdateRightIsS() :- isIn(X,Y) & isPrevious(X,Z) & isPrevious(Y,P) & updateRightIs(Z,P).
+
+}
+
+Events {
+
+}
