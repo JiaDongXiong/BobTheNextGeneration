@@ -26,6 +26,7 @@ public class WorldController {
     //boat
     private boolean onBoat = false;
     private Entity theBoat;
+    private boolean allowMacro = false;
 
     // Objects
     private List<Entity> objects;
@@ -211,10 +212,12 @@ public class WorldController {
         	if (theBoat != null) {
         		
         		// TODO
-        		/*mapManager.updateBoatPos(theBoat.getCoord().getWorldX(), theBoat.getCoord().getWorldY(), 
-        				bob.getCoord().getWorldX(), bob.getCoord().getWorldY());
-        		System.out.println("( "+theBoat.getCoord().getWorldX() + ", " + theBoat.getCoord().getWorldY() + " ) --> " 
-        				+ "( "+bob.getCoord().getWorldX() + ", " + bob.getCoord().getWorldY() + " )");*/
+        		if (allowMacro) {
+        			mapManager.updateBoatPos(theBoat.getCoord().getWorldX(), theBoat.getCoord().getWorldY(), 
+        					bob.getCoord().getWorldX(), bob.getCoord().getWorldY());
+        		}
+        		//System.out.println("( "+theBoat.getCoord().getWorldX() + ", " + theBoat.getCoord().getWorldY() + " ) --> " 
+        		//		+ "( "+bob.getCoord().getWorldX() + ", " + bob.getCoord().getWorldY() + " )");
         		
         		
         		theBoat.updateObjectPosition(bob.getCoord().getWorldX(), bob.getCoord().getWorldY());

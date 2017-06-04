@@ -1,32 +1,42 @@
-<root type="WRITE">
-	<bob x="0" y="0"/>
+<root type="READ">
+	<bob x="10" y="11"/>
 	<text>This is a custom map</text>
 	<hints>
 		<hint>Testing</hint>
 	</hints>
-	<inputs>
-		<block name="white"/>
-		<block name="red"/>
-		<block name="yellow"/>
-		<block name="green"/>
-		<block name="orange"/>
-		<block name="purple"/>
-		<block name="ocean"/>
-		<block name="boat"/>
-		<block name="next_tile"/>
-		<block name="prev_tile"/>
-		<block name="left_tile"/>
-		<block name="right_tile"/>
-		<block name="moveWest"/>
-		<block name="moveNorth"/>
-		<block name="moveEast"/>
-		<block name="moveSouth"/>
-		<block name="pause"/>
-		<block name="and"/>
-		<block name="imply"/>
-		<block name="not"/>
-	</inputs>
-	<rules available="8"/>
+	<rules>
+		<rule>
+			<block name="red"/>
+			<block name="imply"/>
+			<block name="moveEast"/>
+		</rule>
+		<rule>
+			<block name="boat"/>
+			<block name="and"/>
+			<block name="not"/>
+			<block name="left_tile"/>
+			<block name="white"/>
+			<block name="imply"/>
+			<block name="moveNorth"/>
+		</rule>
+		<rule>
+			<block name="boat"/>
+			<block name="and"/>
+			<block name="left_tile"/>
+			<block name="white"/>
+			<block name="imply"/>
+			<block name="moveWest"/>
+		</rule>
+		<rule>
+			<block name="white"/>
+			<block name="imply"/>
+			<block name="moveNorth"/>
+		</rule>
+		<rule/>
+		<rule/>
+		<rule/>
+		<rule/>
+	</rules>
 	<floor>
 		9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
@@ -34,12 +44,12 @@
 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
+9,9,9,9,9,9,9,9,9,9,7,9,9,9,9,9,9,9,9,9,9,9,9,
+9,9,9,9,9,9,9,9,9,9,1,9,9,9,9,9,9,9,9,9,9,9,9,
+9,9,9,9,9,9,9,9,9,9,1,9,9,9,9,9,9,9,9,9,9,9,9,
 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
-9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
-9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
-9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
-9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
+9,9,9,9,9,9,9,9,9,9,2,9,9,9,9,9,9,9,9,9,9,9,9,
 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
@@ -65,7 +75,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,26,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
