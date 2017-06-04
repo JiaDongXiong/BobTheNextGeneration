@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.StringBuilder;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.bob.game.inputs.Block;
 import com.bob.game.levels.Level;
@@ -126,16 +127,17 @@ public class WorldController {
     }
 
     public void startLPSAnimation(Level level, String rules) {
+    	String objectsString;
+    	if (allowMacro) {
+    		objectsString = objectsToString();
+    	} else {
+    		objectsString = mapManager.getLightsString();
+    	}
+    	
         instructionRetriever = new LPSHandler(mapManager.getLPSDescription(), 
-        		mapManager.getLightsString(), rules, level.getX(), level.getY());
+        		objectsString, rules, level.getX(), level.getY());
         isAnimPlaying = true;
     }
-    
-    /*public void startMacroLPSAnimation(Level level, String rules) {
-    	 instructionRetriever = new LPSHandler(mapManager.getLPSDescription(), 
-         		mapManager.getLightsString(), rules, level.getX(), level.getY());
-         isAnimPlaying = true;
-	}*/
 
     public void startMockAnimation(LinkedList<Block> blockStack) {
         instructionRetriever = new MockLPSHandler(blockStack);
@@ -168,6 +170,22 @@ public class WorldController {
     ////////////////////////////////////////////////////////////////////
     /////--------------------Private Helpers-----------------------/////
     ////////////////////////////////////////////////////////////////////
+    
+    private String objectsToString () {
+    	List<WorldCoordinates> lights = mapManager.getCoordinatesList("Objects", "light_bulb");
+        StringBuilder sb = new StringBuilder();
+
+        for (WorldCoordinates light: lights) {
+            sb.append("lightBulb("+(int)light.getWorldX()+","+(int)light.getWorldY()+").");
+        }
+        
+        List<WorldCoordinates> boats = originalBoats;
+        for (WorldCoordinates boat: boats) {
+            sb.append("boat("+(int)boat.getWorldX()+","+(int)boat.getWorldY()+").");
+        }
+
+        return sb.toString();
+    }
     
     private void updateWorld(float deltaTimeAdjusted) {
         updateBob(deltaTimeAdjusted);

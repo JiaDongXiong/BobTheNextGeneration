@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -507,6 +508,7 @@ public class Menu {
                        prefs.putInteger("writeProgress", -1);
                        prefs.putInteger("readProgress", -1);
                        prefs.putInteger("macroProgress", -1);
+                       prefs.flush();
                    }
                }
         );
@@ -553,18 +555,12 @@ public class Menu {
         int levelsButtonX = 660;
         int levelsButtonY = startY;
 
-        //Texture lockTexture = TextureFactory.createTexture("buttons/lock.png");
-
         Label.LabelStyle titleStyle = new Label.LabelStyle();
         titleStyle.font = skin.getFont("impact");
         Label titleLabel = new Label(title, titleStyle);
         titleLabel.setAlignment(Align.right);
         titleLabel.setBounds(0, startY, 640, 100);
-
         levelsGroup.addActor(titleLabel);
-
-        //Preferences prefs = Gdx.app.getPreferences("Progress");
-        //int unlocked = prefs.getInteger(prefString, -1);
 
         for (int i = 0; i < noLevels; i++) {
             final int j = i;
@@ -595,13 +591,19 @@ public class Menu {
 
             levelsGroup.addActor(button);
 
-            // Disable if not unlocked
-            /*if (i > unlocked + 1 && Config.levelsAreLocked) {
-                button.setDisabled(true);
-                Image lock = new Image(lockTexture);
-                lock.setBounds(levelsButtonX - 14, levelsButtonY - 14, 128, 128);
-                levelsGroup.addActor(lock);
-            }*/
+            // Disable if not unlocked(not custom maps)
+            if (!title.equals("Custom")) {
+            	Texture lockTexture = TextureFactory.createTexture("buttons/lock.png");
+                Preferences prefs = Gdx.app.getPreferences("Progress");
+                int unlocked = prefs.getInteger(prefString, -1);
+                
+                if (i > unlocked + 1 && Config.levelsAreLocked) {
+                    button.setDisabled(true);
+                    Image lock = new Image(lockTexture);
+                    lock.setBounds(levelsButtonX - 14, levelsButtonY - 14, 128, 128);
+                    levelsGroup.addActor(lock);
+                }
+            }
 
             levelsButtonX += 125;
 

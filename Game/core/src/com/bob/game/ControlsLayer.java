@@ -106,18 +106,11 @@ class ControlsLayer extends Layer {
         });
         group.addActor(lpsButton);
         
-        causalButton = new TextButton("Causal Theory", skin, "blue_button") {
-            @Override
-            public void draw(Batch batch, float parentAlpha) {
-            	this.setDisabled(!(controller.isRulesValid() && controller.noOfRules()>0));
-                super.draw(batch, parentAlpha);
-            }
-        };
+        causalButton = new TextButton("Causal Theory", skin, "blue_button");
         causalButton.setBounds(765, 10, 300, 60);
         causalButton.addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
                 if (!causalButton.isDisabled()) {
-                	//addTheoryButtons(skin, controller);
                 	controller.displayCausal();
                 }
             }

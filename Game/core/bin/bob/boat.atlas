@@ -1,0 +1,12 @@
+boat.png
+size: 133,133
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bob_won
+  rotate: false
+  xy: 0, 0
+  size: 133, 133
+  orig: 133, 133
+  offset: 0, 0
+  index: -1

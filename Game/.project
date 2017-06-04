@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>Game</name>
+	<comment>Project Game created by Buildship.</comment>
+	<projects>
+		<project>logicgame-core</project>
+		<project>logicgame-desktop</project>
+	</projects>
+	<buildSpec>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
+	</natures>
+</projectDescription>

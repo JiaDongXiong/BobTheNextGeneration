@@ -82,14 +82,11 @@ public class GameController {
         }
 
         if (currentLevel.allowMacro()) {
-        	
-        	worldController.setAllowMacro(true);
             layerGroup.setVisibility("macro", true);
             layerGroup.setVisibility("inputs", false);
 
             macroManager.resetMacros();
             macroManager.resetMacroInputs();
-
         } else {
             layerGroup.setVisibility("macro", false);
             layerGroup.setVisibility("inputs", true);
@@ -167,9 +164,10 @@ public class GameController {
         resetWorld();
 
         if (currentLevel.allowMacro()) {
+        	worldController.setAllowMacro(true);
             startLPSAnim(macroManager.getRulesString());
-        	//startMacroLPSAnim(macroManager.getRulesString());
         } else {
+        	worldController.setAllowMacro(false);
             if (inputsManager.mixedParadigmUsed()) {
                 ((HelpScreen)layerGroup.get("help screen")).setImage("screens/both_paradigm.png");
                 layerGroup.setVisibility("help screen", true);

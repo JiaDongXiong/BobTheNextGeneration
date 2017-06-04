@@ -17,9 +17,7 @@ Thanks!
     <block name="white" />
     <block name="red" />
     <block name="imply" />
-    <block name="up" />
     <block name="moveEast" />
-    <block name="moveWest" />
     <block name="moveSouth" />
 </inputs>
 <floor>
