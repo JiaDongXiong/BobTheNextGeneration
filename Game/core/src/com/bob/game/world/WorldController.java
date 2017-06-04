@@ -31,6 +31,7 @@ public class WorldController {
     private Entity theBoat;
     private boolean allowMacro = false;
     private Vector2 boatOriginPos = null;
+    private List<WorldCoordinates> originalBoats = new ArrayList<WorldCoordinates>();
     private Vector2 boatPosition = null;
 
     // Objects
@@ -65,6 +66,7 @@ public class WorldController {
 
     public void setupWorld(Level level) {
         mapManager = new MapManager(level.getFloor(), level.getObjects());
+        originalBoats = mapManager.getCoordinatesList("Objects", "boat");
         resetStage(level.getX(), level.getY());
     }
 
@@ -90,9 +92,9 @@ public class WorldController {
         }
     }
 
-    public void resetLights() {
+    public void resetObjects() {
         List<WorldCoordinates> lights = mapManager.getCoordinatesList("Objects", "light_bulb");
-        List<WorldCoordinates> boats = mapManager.getCoordinatesList("Objects", "boat");
+        List<WorldCoordinates> boats = originalBoats;
         objects = new ArrayList<>();
 
         for (WorldCoordinates l: lights) {
@@ -119,7 +121,7 @@ public class WorldController {
 
     public void resetStage(float x, float y) {
         resetBob(x, y);
-        resetLights();
+        resetObjects();
         currentRuleIndexes.clear();
     }
 
@@ -269,10 +271,6 @@ public class WorldController {
     
     private float distanceHelper(Vector2 v1, Vector2 v2) {
     	return v1.dst2(v2);
-    }
-    
-    private void updateBoatInObjects() {
-    	
     }
 
     private void retrieveInstructions() {

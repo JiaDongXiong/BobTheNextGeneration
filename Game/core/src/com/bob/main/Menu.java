@@ -41,7 +41,8 @@ public class Menu {
     //private idManager manager;
     
     private Label label;
-    private String customFileName = "DEFAULT";
+    private String defaultFileName = "DEF";
+    private String customFileName = defaultFileName;
     private TextField textField; //editor
     
     public Menu(Skin skin, idManager manager, EditorController editorController, GameController gameController) {
@@ -281,8 +282,8 @@ public class Menu {
         	@Override
             public void clicked(InputEvent ie, float x, float y) {
         		customFileName = textField.getText(); //TODO: Check Valid Name
-        		if (customFileName.equals("") || customFileName.length()>6) {
-        			customFileName = "DEFAULT";
+        		if (customFileName.equals("") || customFileName.length()>4) {
+        			customFileName = defaultFileName;
         		}
         		manager.prepSave();
             	saveMap(manager);
@@ -290,8 +291,6 @@ public class Menu {
             	if (!equalThenReplace(LevelFactory.CUSTOM, customFileName)) {
             		LevelFactory.addNewCustomLevel(customFileName);
             	}
-            	//label.setVisible(false);
-            	//manager.resetRules();
             }
         	
         });
@@ -321,8 +320,8 @@ public class Menu {
         	@Override
             public void clicked(InputEvent ie, float x, float y) {
         		customFileName = textField.getText(); //TODO: Check Valid Name
-        		if (customFileName.equals("") || customFileName.length()>3) {
-        			customFileName = "DEFAULT";
+        		if (customFileName.equals("") || customFileName.length()>4) {
+        			customFileName = defaultFileName;
         		}
         		manager.prepSave();
             	saveMap(manager);
@@ -333,7 +332,6 @@ public class Menu {
             	} else {
             		for(Level l : LevelFactory.CUSTOM) {
                 		if (l.getFileName().equals(customFileName)) {
-                			//launchLevel(l);
                 			levelSelected = l;
                 			break;
                 		}

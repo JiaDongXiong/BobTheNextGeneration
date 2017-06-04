@@ -33,17 +33,17 @@ public enum Block {
     // Movements Instructions
     WEST("moveWest", "moveWest", Type.CONSEQUENT, "Bob should go West"), //LEFT
     NORTH("moveNorth", "moveNorth", Type.CONSEQUENT, "Bob should go North"),  //UP
-    EAST("moveEast", "moveEast", Type.CONSEQUENT, "Bob should go East"), //RIGHT
     SOUTH("moveSouth", "moveSouth", Type.CONSEQUENT, "Bob should go South"), //DOWN
+    EAST("moveEast", "moveEast", Type.CONSEQUENT, "Bob should go East"), //RIGHT
 
     // Other instructions
     WAIT("wait", "pause", Type.CONSEQUENT, "Bob should wait"),
 
     // Connectors
     AND(" & ", "and", Type.AND, "AND, to be used in: if a AND b"),
-    IMPLY(" -> ", "imply", Type.IMPLY, "IMPLY/THEN, to be used in: if a THEN b"),
-    NOT("!", "not", Type.NOT, "NOT, to be used in: NOT a");
-
+    NOT("!", "not", Type.NOT, "NOT, to be used in: NOT a"),
+	IMPLY(" -> ", "imply", Type.IMPLY, "IMPLY/THEN, to be used in: if a THEN b");
+	
     private final String LPSString;
     private final String imageName;
     private final Type type;
