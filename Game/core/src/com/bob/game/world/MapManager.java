@@ -20,12 +20,7 @@ public class MapManager {
     private final TiledMapTileLayer objectsLayer;
     private Iterator waterIterator;
     private float elapsedSinceAnimation;
-    
-    // My stuff
     private boolean hasGoldTile = false;
-    private boolean allowMacro = false;
-    private Vector2 boatOriginPos = null;
-    private Vector2 boatPosition = null;
 
     public MapManager(int[][] floor, int[][] objects) {
 
@@ -147,56 +142,7 @@ public class MapManager {
         return sb.toString();
     }
     
-    //TODO
-    public void updateBoatPos(float x, float y, float nx, float ny) {
-    	// initialize boatPosition and boatOriginPos
-    	if (boatPosition == null) {
-    		boatOriginPos = new Vector2();
-    		boatPosition = new Vector2();
-    		boatOriginPos.add(x, y);
-    		boatPosition.add(x, y);
-    	}
-    	
-    	float movedDis = distanceHelper(boatPosition, new Vector2(nx, ny));
-    	
-    	if (movedDis>1) {
-    		// temp boat position set to water
-            objectsLayer.getCell((int)boatPosition.x, (int)boatPosition.y).setTile(map.getTileSets().getTile(9));
-    		boatPosition.x = boatPosition.x + updateHelper(boatPosition.x, nx);
-    		boatPosition.y = boatPosition.y + updateHelper(boatPosition.y, ny);
-    	}
-    	
-    	//System.out.println("( " + boatPosition.x + ", " + boatPosition.y + " ) ");
-    	// new boat position set to boat
-    	objectsLayer.getCell((int)boatPosition.x, (int)boatPosition.y).setTile(map.getTileSets().getTile(26));
-    	
-    	/*int xcor  = roundHelper(x);
-    	int nxcor = roundHelper(nx);
-    	int ycor  = roundHelper(y);
-    	int nycor = roundHelper(ny);
-    	
-    	System.out.println("( " + x + ", " + y + " ) -->" + "( " + nx + ", " + ny + " )");
-    	// no significant changes in tilePos
-    	if (xcor == nxcor && ycor == nycor) {
-    		return;
-    	}
-    	System.out.println("( " + xcor + ", " + ycor + " ) -->" + "( " + nxcor + ", " + nycor + " )");*/
-    }
     
-    private int updateHelper(float x, float nx) {
-    	int fx = (int) Math.round(x);
-    	int fnx = (int) Math.round(nx);
-    	
-    	// update if not equal
-    	if (fx!=fnx) {
-    		return fnx-fx;
-    	}
-    	return 0;
-    }
-    
-    private float distanceHelper(Vector2 v1, Vector2 v2) {
-    	return v1.dst2(v2);
-    }
 
     public List<WorldCoordinates> getCoordinatesList(String layerName, String typeString) {
         TiledMapTileLayer layer = (TiledMapTileLayer)map.getLayers().get(layerName);
@@ -293,8 +239,13 @@ public class MapManager {
 
         return type.equals("question");
     }
+    
+    public TiledMapTileLayer getObjectLayer() {
+    	return objectsLayer;
+    }
+    
+    public TiledMap getMap() {
+    	return map;
+    }
 
-	public void hide() {
-		
-	}
 }

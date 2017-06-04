@@ -82,6 +82,8 @@ public class GameController {
         }
 
         if (currentLevel.allowMacro()) {
+        	
+        	worldController.setAllowMacro(true);
             layerGroup.setVisibility("macro", true);
             layerGroup.setVisibility("inputs", false);
 

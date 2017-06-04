@@ -2,6 +2,9 @@ package com.bob.game.world;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -27,6 +30,8 @@ public class WorldController {
     private boolean onBoat = false;
     private Entity theBoat;
     private boolean allowMacro = false;
+    private Vector2 boatOriginPos = null;
+    private Vector2 boatPosition = null;
 
     // Objects
     private List<Entity> objects;
@@ -182,11 +187,12 @@ public class WorldController {
         		boolean isOnWater = mapManager.checkIfWet(bob.getCoord());
         		// stepping off boat
                 if (!isOnWater && onBoat) {
-                	//System.out.println("Hi");
                 	onBoat = false;
+                	if (boatPosition != null) {
+                		theBoat.updateObjectPosition(boatPosition.x, boatPosition.y);
+                	}
                 	theBoat = null;
                 }
-        		
         		continue; 
         	}
         	
@@ -210,19 +216,63 @@ public class WorldController {
         // if bob is on a boat, update the boat position as well
         if (onBoat) {
         	if (theBoat != null) {
-        		
         		// TODO
         		if (allowMacro) {
-        			mapManager.updateBoatPos(theBoat.getCoord().getWorldX(), theBoat.getCoord().getWorldY(), 
+        			updateBoatPos(theBoat.getCoord().getWorldX(), theBoat.getCoord().getWorldY(), 
         					bob.getCoord().getWorldX(), bob.getCoord().getWorldY());
         		}
-        		//System.out.println("( "+theBoat.getCoord().getWorldX() + ", " + theBoat.getCoord().getWorldY() + " ) --> " 
-        		//		+ "( "+bob.getCoord().getWorldX() + ", " + bob.getCoord().getWorldY() + " )");
-        		
-        		
+        		//for animation
         		theBoat.updateObjectPosition(bob.getCoord().getWorldX(), bob.getCoord().getWorldY());
         	}
-        }
+        } 
+    }
+    
+    //TODO
+    private void updateBoatPos(float x, float y, float nx, float ny) {
+    	
+    	// initialize boatPosition and boatOriginPos
+    	if (boatPosition == null) {
+    		boatOriginPos = new Vector2();
+    		boatPosition = new Vector2();
+    		boatOriginPos.add(x, y);
+    		boatPosition.add(x, y);
+    	}
+    	
+    	TiledMapTileLayer objectsLayer = mapManager.getObjectLayer();
+    	TiledMap map = mapManager.getMap();
+    	
+    	float movedDis = distanceHelper(boatPosition, new Vector2(nx, ny));
+    	
+    	if (movedDis>1) {
+    		// temp boat position set to water
+    		objectsLayer.getCell((int)boatPosition.x, (int)boatPosition.y).setTile(map.getTileSets().getTile(9));
+    		boatPosition.x = boatPosition.x + updateHelper(boatPosition.x, nx);
+    		boatPosition.y = boatPosition.y + updateHelper(boatPosition.y, ny);
+    	}
+    	
+    	//System.out.println("( " + boatPosition.x + ", " + boatPosition.y + " ) ");
+    	// new boat position set to boat
+    	objectsLayer.getCell((int)boatPosition.x, (int)boatPosition.y).setTile(map.getTileSets().getTile(26));
+    	
+    }
+    
+    private int updateHelper(float x, float nx) {
+    	int fx = (int) Math.round(x);
+    	int fnx = (int) Math.round(nx);
+    	
+    	// update if not equal
+    	if (fx!=fnx) {
+    		return fnx-fx;
+    	}
+    	return 0;
+    }
+    
+    private float distanceHelper(Vector2 v1, Vector2 v2) {
+    	return v1.dst2(v2);
+    }
+    
+    private void updateBoatInObjects() {
+    	
     }
 
     private void retrieveInstructions() {
@@ -270,6 +320,11 @@ public class WorldController {
     ///////////////////////////////////////////////////////////////////
     //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     
+    public void setAllowMacro(boolean b) {
+    	allowMacro = b;
+    }
+    
+    // reset bob if bob is out of the map
     public boolean outOfMap() {
     	if (bob.getCoord().getWorldX() < 1 || bob.getCoord().getWorldX() > 21 
     			|| bob.getCoord().getWorldY() < 1 || bob.getCoord().getWorldY() > 21) {
@@ -318,10 +373,5 @@ public class WorldController {
     public boolean isOnQuestionMark() {
         return mapManager.isQuestionMark(bob.getCoord());
     }
-
-	public void hide() {
-		mapManager.hide();
-	}
-
 	
 }
