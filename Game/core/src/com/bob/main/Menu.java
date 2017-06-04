@@ -37,6 +37,7 @@ public class Menu {
     private boolean isVisible = true;
     private Level levelSelected;
     private boolean isEditting = false;
+    private Integer enterFromPlay = null; // 1: enter from play, 2: enter from levels , else null
     private final EditorController editorController;
     private final GameController gameController;
     //private idManager manager;
@@ -72,6 +73,7 @@ public class Menu {
 
         buttons.get("PLAY").addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
+            	enterFromPlay = 1;
             	initAllLevelButtons(skin);
                 modeGroup.setVisible(true);
             }
@@ -85,6 +87,7 @@ public class Menu {
 
         buttons.get("LEVELS").addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
+            	enterFromPlay = 2;
                 levelsGroup.clear();
                 initLevels(skin);
                 levelsGroup.setVisible(true);
@@ -615,6 +618,9 @@ public class Menu {
         backButton.addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
                 group.setVisible(false);
+                if (isVisible) {
+                	show();
+                }
             }
         });
 
@@ -623,10 +629,6 @@ public class Menu {
     
     public void showEditor() {
     	editorGroup.setVisible(true);
-    }
-    
-    public void showLevels() {
-    	levelsGroup.setVisible(true);
     }
 
     public void show() {
@@ -640,7 +642,6 @@ public class Menu {
         levelsGroup.setVisible(false);
         settingsGroup.setVisible(false);
         editorGroup.setVisible(false);
-        //storeGroup.setVisible(false);
         isVisible = false;
     }
 
@@ -664,4 +665,19 @@ public class Menu {
         stage.addActor(editorGroup);
         //stage.addActor(storeGroup);
     }
+
+	public void quitFromPlaying() {
+		if (enterFromPlay == null) {
+			menuGroup.setVisible(true);
+			isVisible = true;
+			return;
+		}
+		
+		if (enterFromPlay == 1) {
+			modeGroup.setVisible(true);
+		} else {
+			levelsGroup.setVisible(true);
+		}
+		isVisible = true;
+	}
 }

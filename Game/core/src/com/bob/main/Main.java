@@ -105,12 +105,10 @@ public class Main extends ApplicationAdapter {
 		if (gameState == GameState.MENU) {
 			if (!menu.isVisible()) {
 				if(!menu.isEditting()) {
-					//System.out.println("start playing");
 					editorController.hide();
 					startLevel(menu.getLevelSelected());
 				} else {
 					gameController.hide();
-					//System.out.println("start editoring");
 					startEditor();
 				}
 			}
@@ -118,11 +116,10 @@ public class Main extends ApplicationAdapter {
 		
 		if (gameState == GameState.PLAYING) {
 			gameController.render(deltaTime);
+			
 			if (!gameController.isVisible()) {
 				if(!editorController.isTrying()) {
-					menu.show();
-					menu.showLevels();
-					//System.out.println("quit playing");
+					menu.quitFromPlaying();
 					gameState = GameState.MENU;
 				} else {
 					gameState = GameState.EDITTING;
@@ -145,7 +142,6 @@ public class Main extends ApplicationAdapter {
 			if (!editorController.isVisible()) {
 				if(!editorController.isTrying()) {
 					menu.show();
-					//System.out.println("quit editor");
 					gameState = GameState.MENU;
 				} else {
 					startLevel(menu.getLevelSelected());

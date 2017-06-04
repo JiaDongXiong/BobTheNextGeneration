@@ -24,6 +24,7 @@ public class GameController {
     private final LPSLayer lps;
     private final CausalLayer causal;
     private final MacroRulesLayer macro;
+	private String enterEntry = "play"; // default
 
     public GameController(Skin skin, OrthographicCamera camera) {
 
