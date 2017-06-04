@@ -530,14 +530,8 @@ public class Menu {
         Image levelsBkg = new Image(TextureFactory.createTexture("screens/menu.png"));
         levelsBkg.setBounds(0,0, 1920, 1080);
         levelsGroup.addActor(levelsBkg);
-
-        /*addLevelButtons(skin, LevelFactory.WRITE, "writeProgress", "Write", 430);
-        addLevelButtons(skin, LevelFactory.READ, "readProgress", "Read", 300);
-        addLevelButtons(skin, LevelFactory.MACRO, "macroProgress", "Macro", 170);
-        addLevelButtons(skin, LevelFactory.CUSTOM, "customCollection", "Custom", 40);*/
         
         initAllLevelButtons(skin);
-
         addBackButton(skin, levelsGroup);
 
         levelsGroup.setVisible(false);
