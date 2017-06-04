@@ -562,13 +562,13 @@ public class Menu {
             TextButton button;
             switch (level.getGameMode()) {
             case "WRITE": //blue
-            	button = new TextButton(level.getFileName(), skin, "blue_button");
+            	button = new TextButton(level.getFileName(), skin, "blue_square_button");
             	break;
             case "READ":  //green
-            	button = new TextButton(level.getFileName(), skin, "green_button");
+            	button = new TextButton(level.getFileName(), skin, "green_square_button");
             	break;
             case "MACRO": //orange
-            	button = new TextButton(level.getFileName(), skin, "orange_button");
+            	button = new TextButton(level.getFileName(), skin, "orange_square_button");
             	break;
             default:
             	button = new TextButton(level.getFileName(), skin, "grey_square_button");
@@ -611,7 +611,7 @@ public class Menu {
 
     private void addBackButton(Skin skin, final Group group) {
         TextButton backButton = new TextButton("BACK", skin, "grey_button");
-        backButton.setBounds(10, 15, 200, 60);
+        backButton.setBounds(10, 15, 220, 70);
         backButton.addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
                 group.setVisible(false);

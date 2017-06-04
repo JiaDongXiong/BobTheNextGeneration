@@ -138,7 +138,7 @@ class ControlsLayer extends Layer {
         
 
         // RESET BUTTON
-        resetButton = new TextButton("RESET ALL", skin, "blue_button");
+        resetButton = new TextButton("RESET ALL", skin, "orange_button");
         resetButton.setBounds(1260, 10, 210, 60);
         resetButton.addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
@@ -150,7 +150,7 @@ class ControlsLayer extends Layer {
         // ----------
 
         // RESET BOB
-        TextButton resetBobButton = new TextButton("RESET BOB", skin, "blue_button");
+        TextButton resetBobButton = new TextButton("RESET BOB", skin, "yellow_button");
         resetBobButton.setBounds(1480, 10, 210, 60);
         resetBobButton.addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
@@ -199,7 +199,7 @@ class ControlsLayer extends Layer {
 
         // Pause
         TextButton pauseButton = new TextButton("||", skin, "grey_button");
-        pauseButton.setBounds(220, 20, 30, 40);
+        pauseButton.setBounds(220, 20, 33, 47);
         pauseButton.addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
                 slider.setValue(0);
@@ -210,7 +210,7 @@ class ControlsLayer extends Layer {
 
         // Play
         TextButton playButton = new TextButton(">", skin, "grey_button");
-        playButton.setBounds(260, 20, 30, 40);
+        playButton.setBounds(260, 20, 33, 47);
         playButton.addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
                 slider.setValue(2);
@@ -221,14 +221,14 @@ class ControlsLayer extends Layer {
         // --------------------- rule page controls ------------------------ \\
         ///////////////////////////////////////////////////////////////////////
         
-        final TextButton nextRulePage = new TextButton(">", skin, "green_button") {
+        final TextButton nextRulePage = new TextButton(">", skin, "green_square_button") {
             @Override
             public void draw(Batch batch, float parentAlpha) {
             	this.setDisabled(controller.isOnwhichPage(1));
                 super.draw(batch, parentAlpha);
             }
         };
-        nextRulePage.setBounds(1755, 647, 30, 35);
+        nextRulePage.setBounds(1755, 645, 38, 42);
         nextRulePage.addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
             	if(!nextRulePage.isDisabled()) {
@@ -238,14 +238,14 @@ class ControlsLayer extends Layer {
         });
         group.addActor(nextRulePage);
         
-        final TextButton prevRulePage = new TextButton("<", skin, "green_button") {
+        final TextButton prevRulePage = new TextButton("<", skin, "green_square_button") {
             @Override
             public void draw(Batch batch, float parentAlpha) {
             	this.setDisabled(controller.isOnwhichPage(0));
                 super.draw(batch, parentAlpha);
             }
         };
-        prevRulePage.setBounds(1512, 647, 30, 35);
+        prevRulePage.setBounds(1512, 645, 38, 42);
         prevRulePage.addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
             	if(!prevRulePage.isDisabled()) {

@@ -185,8 +185,20 @@ public class Main extends ApplicationAdapter {
 	    font = generator.generateFont(parameter); 
 	    generator.dispose();
 	    skin.add("val", font);
-
-		BitmapFont whiteFont = new BitmapFont(Gdx.files.internal("font/white.fnt"));
+	    
+	    generator = new FreeTypeFontGenerator(Gdx.files.internal("font/Chunkfive.otf"));
+	    parameter.size = 48;
+	    parameter.borderWidth = 1;
+	    parameter.color = Color.DARK_GRAY;
+	    parameter.shadowOffsetX = 0;
+	    parameter.shadowOffsetY = 0;
+	    parameter.shadowColor = Color.GRAY;
+	    font = generator.generateFont(parameter);
+	    generator.dispose();
+	    skin.add("chunk", font);
+		
+	    
+	    BitmapFont whiteFont = new BitmapFont(Gdx.files.internal("font/white.fnt"));
 		whiteFont.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 		whiteFont.getData().scale(-0.2f);
 		skin.add("white", whiteFont);
@@ -200,9 +212,12 @@ public class Main extends ApplicationAdapter {
 		smallFont.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 		skin.add("impact_small", smallFont);
 
-		String[] buttonColor = {"grey", "grey_square", "big_grey", "orange", "red", "green", "blue", "yellow"};
-		String[] buttonFont = {"impact_small", "impact", "impact", 
-				"impact_small", "impact_small", "impact_small", "impact_small", "impact_small"};
+		String[] buttonColor = {"grey", "grey_square", "big_grey", "orange", "red", "green", "blue", "yellow", 
+				"orange_square", "green_square", "blue_square", "yellow_square"};
+		//TODO
+		String[] buttonFont = {"impact_small", "impact_small", "impact", 
+				"impact_small", "impact_small", "impact_small", "impact_small", "impact_small", 
+				"impact_small", "impact_small", "impact_small", "impact_small"};
 		skin.add("disabled_button", TextureFactory.createTexture("buttons/disabled.png"));
 
 		for (int i = 0; i < buttonColor.length; i++) {

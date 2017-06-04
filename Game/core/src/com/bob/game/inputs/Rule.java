@@ -394,7 +394,7 @@ public class Rule {
     }
     
     public void addClearButton(InputsLayer layer, Skin skin, int startingX, int startingY, final InputsManager manager) {
-    	button = new TextButton("X", skin, "red_button") {
+    	button = new TextButton("X", skin, "yellow_square_button") {
             @Override
             public void draw(Batch batch, float parentAlpha) {
                 super.draw(batch, parentAlpha);

@@ -8,7 +8,7 @@ import com.bob.main.TextureFactory;
 public class BackGroundLayer extends Layer {
 	
 	public BackGroundLayer(Skin skin) {
-		Image foreground = new Image(TextureFactory.createTexture("screens/03.png"));
+		Image foreground = new Image(TextureFactory.createTexture("screens/editorBkg.png"));
         group.addActor(foreground);
 	}
 	

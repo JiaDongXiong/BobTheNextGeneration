@@ -95,7 +95,6 @@ public class GameController {
             	inputsManager.setUpRulesForRead(currentLevel.getRules(), false);
             } else {
             	int noOfRules = currentLevel.getNoRules();
-            	//System.out.println(noOfRules);
             	inputsManager.disableClearRuleButtons(false);
             	inputsManager.setupRules(noOfRules, currentLevel.getRules(), false);
             	inputsManager.disableRuleUIs(noOfRules);
