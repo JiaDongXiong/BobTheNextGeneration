@@ -17,7 +17,7 @@ I am sure that it is too complicated!
 	    <block name="prev_tile" />
             <block name="white" />
             <block name="imply" />
-            <block name="right" />
+            <block name="moveEast" />
         </rule>
         <rule>
             <block name="white" />
@@ -25,7 +25,7 @@ I am sure that it is too complicated!
 	    <block name="prev_tile" />
             <block name="red" />
             <block name="imply" />
-            <block name="left" />
+            <block name="moveWest" />
         </rule>
         <rule>
             <block name="white" />
@@ -33,7 +33,7 @@ I am sure that it is too complicated!
 	    <block name="prev_tile" />
             <block name="green" />
             <block name="imply" />
-            <block name="up" />
+            <block name="moveNorth" />
         </rule>
         <rule>
             <block name="green" />
@@ -42,7 +42,7 @@ I am sure that it is too complicated!
 	    <block name="prev_tile" />
             <block name="white" />
             <block name="imply" />
-            <block name="down" />
+            <block name="moveSouth" />
         </rule>
         <rule>
             <block name="green" />
@@ -50,7 +50,7 @@ I am sure that it is too complicated!
 	    <block name="prev_tile" />
             <block name="white" />
             <block name="imply" />
-            <block name="right" />
+            <block name="moveEast" />
         </rule>
         <rule>
             <block name="red" />
@@ -59,7 +59,7 @@ I am sure that it is too complicated!
             <block name="prev_tile" />
             <block name="white" />
             <block name="imply" />
-            <block name="up" />
+            <block name="moveNorth" />
         </rule>
         <rule>
             <block name="red" />
@@ -67,7 +67,7 @@ I am sure that it is too complicated!
             <block name="prev_tile" />
             <block name="white" />
             <block name="imply" />
-            <block name="left" />
+            <block name="moveWest" />
         </rule>
     </rules>
     <floor>

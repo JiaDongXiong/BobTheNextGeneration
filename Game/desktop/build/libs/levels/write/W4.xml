@@ -23,10 +23,10 @@ Let's see if you can riddle me this.
     <block name="yellow" />
     <block name="imply" />
     <block name="not" />
-    <block name="up" />
-    <block name="right" />
-    <block name="left" />
-    <block name="down" />
+    <block name="moveNorth" />
+    <block name="moveEast" />
+    <block name="moveWest" />
+    <block name="moveSouth" />
 </inputs>
 <floor>
 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,

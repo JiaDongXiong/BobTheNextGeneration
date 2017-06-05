@@ -1,5 +1,6 @@
 package com.bob.game.inputs;
 
+import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -28,6 +29,16 @@ public abstract class Target {
         targetY = startingY;
 
         layer.addActor(bkgImage);
+        
+        /*target.getActor().addListener(new ClickListener(Buttons.RIGHT)
+        {
+            @Override
+            public void clicked(InputEvent event, float x, float y)
+            {
+                target.getActor().setColor(Color.CLEAR);
+                payload = null;
+            }
+        });*/
 
         target = new DragAndDrop.Target(bkgImage) {
             public boolean drag(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer) {
@@ -37,6 +48,7 @@ public abstract class Target {
 
             public void reset(DragAndDrop.Source source, DragAndDrop.Payload payload) {
                 getActor().setColor(Color.CLEAR);
+                payload = null;
             }
 
             public void drop(DragAndDrop.Source source, DragAndDrop.Payload payload, float x, float y, int pointer) {
@@ -65,6 +77,15 @@ public abstract class Target {
     }
 
     protected void setMoveAbility() {
+    	actor.addListener(new ClickListener(Buttons.RIGHT)
+        {
+            @Override
+            public void clicked(InputEvent event, float x, float y)
+            {
+                reset();
+            }
+        });
+    	
         actor.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

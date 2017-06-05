@@ -20,7 +20,7 @@ Thanks for your help!
     <image>screens/tut3.png</image>
 </tutorial>
 <inputs>
-    <block name="right" />
+    <block name="moveEast" />
 </inputs>
 <floor>
 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,

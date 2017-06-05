@@ -15,22 +15,22 @@ Click on the question mark when you've guessed.
     <rule>
         <block name="red" />
         <block name="imply" />
-        <block name="down" />
+        <block name="moveSouth" />
     </rule>
     <rule>
         <block name="purple" />
         <block name="imply" />
-        <block name="right" />
+        <block name="moveEast" />
     </rule>
     <rule>
         <block name="yellow" />
         <block name="imply" />
-        <block name="down" />
+        <block name="moveSouth" />
     </rule>
     <rule>
         <block name="green" />
         <block name="imply" />
-        <block name="left" />
+        <block name="moveWest" />
     </rule>
 </rules>
 <tutorial>

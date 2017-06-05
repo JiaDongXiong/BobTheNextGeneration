@@ -28,6 +28,10 @@ class RuleCell extends Target{
             }
         }
     }
+    
+    public void resetPayload() {
+    	payload = null;
+    }
 
     public Block getBlock() {
         return ((Block) payload);
