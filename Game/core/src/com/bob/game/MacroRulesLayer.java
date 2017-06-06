@@ -65,9 +65,11 @@ public class MacroRulesLayer extends Layer {
 	private String macroHelper(String str) {
 		String[] strArray;
 		String direc;
-		strArray = str.split(" -> ");
-		direc = strArray[1];
 		String res = "";
+		
+		strArray = str.split(" -> ");
+		if (strArray.length == 0) { return res; }
+		direc = strArray[1];
 		
 		if (direc.contains("moveNorth")) {
 			res = "moveNorth(N) :-  isIn(X,Y) & isNext(Y,Z) & moveFromTo(X,Y,X,Z).";

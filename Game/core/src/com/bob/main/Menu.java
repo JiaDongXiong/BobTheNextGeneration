@@ -589,7 +589,7 @@ public class Menu {
             levelsGroup.addActor(button);
 
             // Disable if not unlocked(not custom maps)
-            if (!title.equals("Custom")) {
+            /*if (!title.equals("Custom")) {
             	Texture lockTexture = TextureFactory.createTexture("buttons/lock.png");
                 Preferences prefs = Gdx.app.getPreferences("Progress");
                 int unlocked = prefs.getInteger(prefString, -1);
@@ -600,7 +600,7 @@ public class Menu {
                     lock.setBounds(levelsButtonX - 14, levelsButtonY - 14, 128, 128);
                     levelsGroup.addActor(lock);
                 }
-            }
+            }*/
 
             levelsButtonX += 125;
 

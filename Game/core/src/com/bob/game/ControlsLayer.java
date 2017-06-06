@@ -130,7 +130,7 @@ class ControlsLayer extends Layer {
             public void clicked(InputEvent ie, float x, float y) {
                 if (!macroButton.isDisabled()) {
                 	addMacroButtons(skin, controller);
-                }
+                } 
             }
         });
         group.addActor(macroButton);
@@ -142,6 +142,7 @@ class ControlsLayer extends Layer {
         resetButton.setBounds(1260, 10, 210, 60);
         resetButton.addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
+            	resetMacros();
                 controller.reset();
             }
         });
@@ -306,9 +307,17 @@ class ControlsLayer extends Layer {
         this.hintButton.setVisible(disabled);
     }
     
+    public void resetMacros() {
+    	//buttonGroup.setVisible(false);
+    	group.removeActor(buttonGroup);
+        pressed = false;
+    }
+    
     public void disableLPS(boolean disabled) {
         this.lpsButton.setVisible(disabled);
         this.causalButton.setVisible(disabled);
+        group.removeActor(buttonGroup);
+        pressed = false;
     }
     
 }

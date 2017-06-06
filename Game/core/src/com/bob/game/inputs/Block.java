@@ -22,13 +22,13 @@ public enum Block {
 
     // Direction Tiles
     NEXT_TILE("frontIs", "next_tile", Type.DIRECTION, 
-    		"Place it before a color cell to check whether the next cell of Bob is of that color or not"),
+    		"Place it before a color to check whether the next cell of Bob is of that color or not"),
     PREV_TILE("prevWas", "prev_tile", Type.DIRECTION, 
-    		"Place it before a color cell to check whether the previous cell of Bob is of that color or not"),
+    		"Place it before a color to check whether the previous cell of Bob is of that color or not"),
     LEFT_TILE("leftIs", "left_tile", Type.DIRECTION, 
-    		"Place it before a color cell to check whether the left cell of Bob is of that color or not"),
+    		"Place it before a color to check whether the left cell of Bob is of that color or not"),
     RIGHT_TILE("rightIs", "right_tile", Type.DIRECTION, 
-    		"Place it before a color cell to check whether the right cell of Bob is of that color or not"),
+    		"Place it before a color to check whether the right cell of Bob is of that color or not"),
     
     // Movements Instructions
     WEST("moveWest", "moveWest", Type.CONSEQUENT, "Bob should go West"), //LEFT

@@ -50,7 +50,7 @@ public class MacroLayer extends InputsLayer {
     }
 
     public void addModalButton(final MacroManager macroManager) {
-        newMacroButton = new TextButton("+", skin, "green_button");
+        newMacroButton = new TextButton("+", skin, "green_square_button");
         newMacroButton.setBounds(1840, 970, 50, 50);
 
         newMacroButton.addListener(new ClickListener() {

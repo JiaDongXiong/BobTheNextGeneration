@@ -42,7 +42,7 @@ public class ModalLayer extends InputsLayer {
                 super.draw(batch, parentAlpha);
             }
         };
-        submitbutton.setBounds(1160, 800, 200, 65);
+        submitbutton.setBounds(1160, 500, 200, 65);
         submitbutton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -53,7 +53,7 @@ public class ModalLayer extends InputsLayer {
 
         // Cancel modal button
         TextButton button = new TextButton("Cancel", skin, "blue_button");
-        button.setBounds(1160, 875, 200, 65);
+        button.setBounds(1160, 575, 200, 65);
         button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -63,8 +63,8 @@ public class ModalLayer extends InputsLayer {
         addActor(button);
 
         // Delete modal button
-        button = new TextButton("Delete", skin, "red_button");
-        button.setBounds(1160, 950, 200, 65);
+        button = new TextButton("Delete", skin, "orange_button");
+        button.setBounds(1160, 650, 200, 65);
         button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

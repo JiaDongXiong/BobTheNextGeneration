@@ -24,7 +24,7 @@ public class GameController {
     private final LPSLayer lps;
     private final CausalLayer causal;
     private final MacroRulesLayer macro;
-	private String enterEntry = "play"; // default
+    private final ControlsLayer controls;
 
     public GameController(Skin skin, OrthographicCamera camera) {
 
@@ -45,6 +45,7 @@ public class GameController {
         lps = (LPSLayer)layerGroup.get("lps");
         causal = (CausalLayer)layerGroup.get("causal");
         macro = (MacroRulesLayer)layerGroup.get("macroRules");
+        controls = (ControlsLayer)layerGroup.get("controls");
         
         inputsManager = new InputsManager();
         macroManager = new MacroManager();
@@ -72,6 +73,7 @@ public class GameController {
     }
 
     public void startNewLevel() {
+    	controls.resetMacros();
     	layerGroup.show();
         currentHint = 0;
         inputsManager.resetRules();
