@@ -2,9 +2,8 @@
 	<bob x="7" y="13"/>
 	<text> OMG, this map looks really difficult : [ </text>
 	<hints>
-		<hint>Maybe we require using all eight of the rule slots</hint>
-		<hint>Use two similiar rules to turn???</hint>
-
+		<hint>Press the green > button to turn the rule page</hint>
+		<hint>Try using FRONT, LEFT and RIGHT input</hint>
 	</hints>
 	<inputs>
 		<block name="white"/>
@@ -14,7 +13,6 @@
 		<block name="orange"/>
 		<block name="purple"/>
 		<block name="ocean"/>
-		<block name="boat"/>
 		<block name="next_tile"/>
 		<block name="prev_tile"/>
 		<block name="left_tile"/>

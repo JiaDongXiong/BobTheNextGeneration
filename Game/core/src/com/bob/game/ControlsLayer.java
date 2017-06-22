@@ -73,6 +73,19 @@ class ControlsLayer extends Layer {
             }
         });
         group.addActor(hintButton);
+        
+        // ----------
+        // example BUTTON
+        TextButton exampleButton = new TextButton("EXAMPLES", skin, "rock_button");
+        exampleButton.setBounds(880, 930, 220, 60);
+        exampleButton.addListener(new ClickListener() {
+            public void clicked(InputEvent ie, float x, float y) {
+                if (!exampleButton.isDisabled()) {
+                    controller.displayExamples();
+                }
+            }
+        });
+        group.addActor(exampleButton);
 
         // ----------
         // HELPS BUTTON

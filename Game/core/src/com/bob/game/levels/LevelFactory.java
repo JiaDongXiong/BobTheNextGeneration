@@ -16,20 +16,7 @@ public class LevelFactory {
     
 
     public static void initialiseLevels() {
-        //populateWrite();
-        //populateRead();
-        //populateMacro();
     	loadLevels();
-    }
-    
-    public static void loadLevelFiles(String dirPath, List<Level> list) {
-    	FileHandle dirHandle = Gdx.files.internal(dirPath);
-    	
-    	for (FileHandle entry: dirHandle.list()) {
-    		Level l = loadInternalLevel(entry.path());
-    		l.setFileName(entry.nameWithoutExtension());
-    		list.add(l);
-    	}
     }
     
     private static void connectLevels(List<Level> list) {
@@ -58,33 +45,17 @@ public class LevelFactory {
     	
     	loadLevelFiles("levels/custom", CUSTOM);
     	connectLevels(CUSTOM);
-    	
-        /*WRITE.add(loadInternalLevel("levels/short.xml"));
-        WRITE.add(loadInternalLevel("levels/straight.xml"));
-        WRITE.add(loadInternalLevel("levels/TEST.xml"));
-        WRITE.add(loadInternalLevel("levels/turn.xml"));
-        WRITE.add(loadInternalLevel("levels/not.xml"));
-        WRITE.add(loadInternalLevel("levels/loop.xml"));*/
     }
 
-    /*private static void populateRead() {
-    	loadLevelFiles("levels/read", READ);
-    	connectLevels(READ);
+    public static void loadLevelFiles(String dirPath, List<Level> list) {
+    	FileHandle dirHandle = Gdx.files.internal(dirPath);
     	
-        READ.add(loadInternalLevel("levels/guess.xml"));
-        READ.add(loadInternalLevel("levels/guessBis.xml"));
-        READ.add(loadInternalLevel("levels/guessTer.xml"));
-        READ.add(loadInternalLevel("levels/readT.xml"));
-    }*/
-
-    /*private static void populateMacro() {
-    	loadLevelFiles("levels/macro", MACRO);
-    	connectLevels(MACRO);
-    	
-        MACRO.add(loadInternalLevel("levels/macro.xml"));
-        MACRO.add(loadInternalLevel("levels/macroT.xml"));
-        MACRO.add(loadInternalLevel("levels/macro2.xml"));
-    }*/
+    	for (FileHandle entry: dirHandle.list()) {
+    		Level l = loadInternalLevel(entry.path());
+    		l.setFileName(entry.nameWithoutExtension());
+    		list.add(l);
+    	}
+    }
     
     //load from system
     public static Level loadExternaLevel(String path) {

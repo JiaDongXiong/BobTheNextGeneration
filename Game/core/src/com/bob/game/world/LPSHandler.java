@@ -98,10 +98,6 @@ public class LPSHandler implements InstructionStrategy {
         CycleHandler.getInstance().updateFireAndSolve();
     }
 
-    /*private RuleSet getEvents() {
-        return CycleHandler.getInstance().getEvents();
-    }*/
-
     @Override
     public EntityState getState() {
         Set<Goal> set = GoalsList.getInstance().getActiveGoals();
@@ -182,9 +178,5 @@ public class LPSHandler implements InstructionStrategy {
 
         return result;
     }
-
-    /*private int convertToInt(String s) {
-        return Integer.parseInt(s.charAt(0) == 'm' ? "-" + s.substring(1) : s);
-    }*/
 
 }

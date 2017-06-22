@@ -1,32 +1,19 @@
-<root type="WRITE">
+<root type="READ">
 	<bob x="0" y="0"/>
 	<text>This is a custom map</text>
 	<hints>
 		<hint>Testing</hint>
 	</hints>
-	<inputs>
-		<block name="white"/>
-		<block name="red"/>
-		<block name="yellow"/>
-		<block name="green"/>
-		<block name="orange"/>
-		<block name="purple"/>
-		<block name="ocean"/>
-		<block name="boat"/>
-		<block name="next_tile"/>
-		<block name="prev_tile"/>
-		<block name="left_tile"/>
-		<block name="right_tile"/>
-		<block name="moveWest"/>
-		<block name="moveNorth"/>
-		<block name="moveSouth"/>
-		<block name="moveEast"/>
-		<block name="pause"/>
-		<block name="and"/>
-		<block name="not"/>
-		<block name="imply"/>
-	</inputs>
-	<rules available="8"/>
+	<rules>
+		<rule/>
+		<rule/>
+		<rule/>
+		<rule/>
+		<rule/>
+		<rule/>
+		<rule/>
+		<rule/>
+	</rules>
 	<floor>
 		9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,

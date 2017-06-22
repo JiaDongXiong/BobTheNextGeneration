@@ -83,7 +83,6 @@ public class Rule {
     }
     
     public String getStringForDisplay() {
-    	//StringBuilder sb = new StringBuilder("isIn(X,Y) & wasIn(U,V) & nextIs(A, B) & leftIs(C, D) & rightIs(E, F) & ");
     	StringBuilder sb = new StringBuilder();
     	boolean notEmpty = false;
     	
@@ -130,7 +129,7 @@ public class Rule {
         checkLPSStrings(cellList);
         
         String listString = cellListToString(cellList);
-        String[] strings = listString.split(" -> ");
+        String[] strings = listString.split(Block.IMPLY.getLPSString());
         String leftS = sb.toString()+strings[0]+" -> ";
         
         sb.append(listString);
@@ -196,7 +195,7 @@ public class Rule {
     		
     		if (last != null) {
     			if (last.equals(Block.NOT.getLPSString())) { // equals NOT
-    				if (cur.equals("!")) {
+    				if (cur.equals(Block.NOT.getLPSString())) {
     					int lastIndex = curIndex-1;
     					list.remove(curIndex);
     					list.remove(lastIndex);
@@ -359,7 +358,6 @@ public class Rule {
     	arrow.setVisible(true);
     	button.setVisible(true);
     }
-    
 
     public boolean onlyConsequentUsed() {
         boolean res = true;
@@ -385,7 +383,6 @@ public class Rule {
         for (RuleCell c : cells) {
             Block b = c.getBlock();
             if (b != null) {
-            	//System.out.println(b.getImageName());
                 blockStack.add(b);
             }
         }

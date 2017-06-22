@@ -13,18 +13,20 @@ import java.util.*;
 public class GameController {
 
     private final LayerGroup layerGroup;
-
     private Level currentLevel;
-
     private final InputsManager inputsManager;
     private final MacroManager macroManager;
     private final WorldController worldController;
     private int currentHint = 0;
     private EditorController editorController;
+    
+    //Layers
     private final LPSLayer lps;
     private final CausalLayer causal;
     private final MacroRulesLayer macro;
     private final ControlsLayer controls;
+    private final ExampleLayer examples;
+    private final TextLayer textual;
 
     public GameController(Skin skin, OrthographicCamera camera) {
 
@@ -41,11 +43,15 @@ public class GameController {
         layerGroup.add("lps", new LPSLayer(skin));
         layerGroup.add("causal", new CausalLayer(skin));
         layerGroup.add("macroRules", new MacroRulesLayer(skin));
+        layerGroup.add("examples", new ExampleLayer());
+        layerGroup.add("textual", new TextLayer(skin, this));
         
         lps = (LPSLayer)layerGroup.get("lps");
         causal = (CausalLayer)layerGroup.get("causal");
         macro = (MacroRulesLayer)layerGroup.get("macroRules");
         controls = (ControlsLayer)layerGroup.get("controls");
+        examples = (ExampleLayer)layerGroup.get("examples");
+        textual = (TextLayer)layerGroup.get("textual");
         
         inputsManager = new InputsManager();
         macroManager = new MacroManager();
@@ -287,6 +293,10 @@ public class GameController {
 		this.editorController = editorController;
 	}
     
+    public void setRuleBlocks(Block[] blocks, int ruleIndex) {
+    	inputsManager.setRule(ruleIndex, blocks);
+    }
+    
     // ----------------------------------------- \\
     ///////////////////////////////////////////////
 
@@ -308,5 +318,9 @@ public class GameController {
         ((HelpScreen)layerGroup.get("help screen")).setImages(res);
         layerGroup.setVisibility("help screen", true);
     }
+
+	public void displayExamples() {
+		examples.setVisibility(true);
+	}
 
 }

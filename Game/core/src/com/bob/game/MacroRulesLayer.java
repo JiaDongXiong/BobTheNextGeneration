@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -24,7 +25,17 @@ public class MacroRulesLayer extends Layer {
 		
 		addActor(new Image(TextureFactory.createTexture("screens/loading.png")));
 		
-		TextButton button = new TextButton("BACK", skin, "blue_button");
+		Actor actor = new Actor();
+		actor.setBounds(0, 0, 1920, 1080);
+		actor.addListener(new ClickListener() {
+            public void clicked(InputEvent ie, float x, float y) {
+            	group.setVisible(false);
+            	visible = false;
+            }
+        });
+		group.addActor(actor);
+		
+		/*TextButton button = new TextButton("BACK", skin, "blue_button");
 		button.addListener(new ClickListener() {
 	           @Override
 	           public void clicked(InputEvent event, float x, float y) {
@@ -33,7 +44,7 @@ public class MacroRulesLayer extends Layer {
 	           };
 	    });
 		button.setBounds(10, 10, 200, 60);
-		addActor(button);
+		addActor(button);*/
 	}
 
 	public boolean isVisible() {

@@ -187,7 +187,7 @@ public class WorldController {
         return sb.toString();
     }
     
-    private void updateWorld(float deltaTimeAdjusted) {
+    public void updateWorld(float deltaTimeAdjusted) {
         updateBob(deltaTimeAdjusted);
         cleanObjects(); 
     }

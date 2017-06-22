@@ -85,12 +85,9 @@ DSet {
 
 ReactiveRules {
 	
-	//isIn(X,Y) & boat(X,Y) -> stepOnBoat().
     	isIn(X,Y) & lightBulb(X,Y) -> stepOnLight().
     	isIn(X,Y) & lightBulb(X,Y) -> pickUpLight().
     	isIn(X,Y) -> triggerUpdateWasIn(). // Always update was in
-	//isIn(X,Y) -> triggerUpdateNextIs().
-
-    	//isIn(X, Y) & nextMacro(X, Y) & macro(M) & isNext(M, N)
+	
     	// RULES ARE DEFINED BY FINAL USER
 

@@ -1,32 +1,61 @@
-<root type="WRITE">
+<root type="READ">
 	<bob x="7" y="13"/>
 	<text>This is a custom map</text>
 	<hints>
 		<hint>Testing</hint>
 	</hints>
-	<inputs>
-		<block name="white"/>
-		<block name="red"/>
-		<block name="yellow"/>
-		<block name="green"/>
-		<block name="orange"/>
-		<block name="purple"/>
-		<block name="ocean"/>
-		<block name="boat"/>
-		<block name="next_tile"/>
-		<block name="prev_tile"/>
-		<block name="left_tile"/>
-		<block name="right_tile"/>
-		<block name="moveWest"/>
-		<block name="moveNorth"/>
-		<block name="moveSouth"/>
-		<block name="moveEast"/>
-		<block name="pause"/>
-		<block name="and"/>
-		<block name="not"/>
-		<block name="imply"/>
-	</inputs>
-	<rules available="8"/>
+	<rules>
+		<rule>
+			<block name="white"/>
+			<block name="imply"/>
+			<block name="moveEast"/>
+		</rule>
+		<rule>
+			<block name="red"/>
+			<block name="imply"/>
+			<block name="moveSouth"/>
+		</rule>
+		<rule>
+			<block name="yellow"/>
+			<block name="and"/>
+			<block name="not"/>
+			<block name="left_tile"/>
+			<block name="purple"/>
+			<block name="imply"/>
+			<block name="moveEast"/>
+		</rule>
+		<rule>
+			<block name="yellow"/>
+			<block name="and"/>
+			<block name="left_tile"/>
+			<block name="purple"/>
+			<block name="imply"/>
+			<block name="moveNorth"/>
+		</rule>
+		<rule>
+			<block name="orange"/>
+			<block name="imply"/>
+			<block name="moveEast"/>
+		</rule>
+		<rule>
+			<block name="purple"/>
+			<block name="and"/>
+			<block name="not"/>
+			<block name="right_tile"/>
+			<block name="orange"/>
+			<block name="imply"/>
+			<block name="moveNorth"/>
+		</rule>
+		<rule>
+			<block name="purple"/>
+			<block name="and"/>
+			<block name="right_tile"/>
+			<block name="orange"/>
+			<block name="imply"/>
+			<block name="moveEast"/>
+		</rule>
+		<rule/>
+	</rules>
 	<floor>
 		9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,
 9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,

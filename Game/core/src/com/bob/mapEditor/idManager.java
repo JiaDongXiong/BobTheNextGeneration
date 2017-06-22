@@ -147,7 +147,6 @@ public class idManager {
 	}
 	 
 	private void displayMacroModal() {
-		//inputsManager.setupRules(8, rules, true);
 		inputsManager.setUpRulesForRead(rulesArray, true);
 		inputsManager.setupInputs(Block.values(), 1404, 1080 - 215);
 		readLayer.setVisibility(true);
@@ -160,26 +159,6 @@ public class idManager {
 	public int getFloorId(int x, int y) {
 		return floor[x][y];
 	}
-	
-	/*public void setObjects(int x, int y) {
-		switch(id) {
-		
-		case 11:	//place a bulb
-			objects[22-y][x] = 25;
-			break;
-		case 12:	//remove a bulb
-			objects[22-y][x] = 0;
-			break;
-		case 13:	//place a boat
-			objects[22-y][x] = 26;
-			break;
-		case 14:	//remove a boat
-			objects[22-y][x] = 0;
-			break;
-		default:
-			
-		}
-	}*/
 	
 	public void draw(SpriteBatch batch, OrthographicCamera camera) {
 		batch.setProjectionMatrix(camera.combined);
@@ -219,8 +198,6 @@ public class idManager {
 	
 	public Vector2 calTilePos(int x, int y) {
 		Vector2 result = new Vector2(0,0);
-		//int width = (int)floorLayer.getWidth();
-    	//int height = (int)floorLayer.getHeight();
 		
 		if (x-y > 0) {
 			result.add(x*32+(y-1)*32, (x-y)*16);

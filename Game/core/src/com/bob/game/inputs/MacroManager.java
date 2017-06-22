@@ -64,13 +64,19 @@ public class MacroManager {
         }
 
         macroLayer.getNewMacroButton().setDisabled(!aSlotFree);
+        
+        // if macro title did not changed use index
+        String macroTile = modalLayer.getText();
+        if (macroTile.equals("Macro Title")) {
+        	macroTile = Integer.toString(index);
+        }
 
         // Create dragable and macro object
         if (draggables[index] == null) {
-            macros[index] = new Macro(modalLayer.getText(), inputsManager.getMacroRules());
+            macros[index] = new Macro(macroTile, inputsManager.getMacroRules());
         } else {
             draggables[index].clear();
-            macros[index].setTitle(modalLayer.getText());
+            macros[index].setTitle(macroTile);
             macros[index].setRules(inputsManager.getMacroRules());
         }
         inputsManager.resetRules();

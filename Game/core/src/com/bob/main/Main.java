@@ -182,7 +182,7 @@ public class Main extends ApplicationAdapter {
 	    generator.dispose();
 	    skin.add("val", font);
 	    
-	    generator = new FreeTypeFontGenerator(Gdx.files.internal("font/Chunkfive.otf"));
+	    /*generator = new FreeTypeFontGenerator(Gdx.files.internal("font/Chunkfive.otf"));
 	    parameter.size = 48;
 	    parameter.borderWidth = 1;
 	    parameter.color = Color.DARK_GRAY;
@@ -191,7 +191,7 @@ public class Main extends ApplicationAdapter {
 	    parameter.shadowColor = Color.GRAY;
 	    font = generator.generateFont(parameter);
 	    generator.dispose();
-	    skin.add("chunk", font);
+	    skin.add("chunk", font);*/
 		
 	    
 	    BitmapFont whiteFont = new BitmapFont(Gdx.files.internal("font/white.fnt"));
@@ -209,11 +209,11 @@ public class Main extends ApplicationAdapter {
 		skin.add("impact_small", smallFont);
 
 		String[] buttonColor = {"grey", "grey_square", "big_grey", "orange", "red", "green", "blue", "yellow", 
-				"orange_square", "green_square", "blue_square", "yellow_square"};
+				"orange_square", "green_square", "blue_square", "yellow_square", "rock"};
 		//TODO
 		String[] buttonFont = {"impact_small", "impact_small", "impact", 
 				"impact_small", "impact_small", "impact_small", "impact_small", "impact_small", 
-				"impact_small", "impact_small", "impact_small", "impact_small"};
+				"impact_small", "impact_small", "impact_small", "impact_small", "impact_small"};
 		skin.add("disabled_button", TextureFactory.createTexture("buttons/disabled.png"));
 
 		for (int i = 0; i < buttonColor.length; i++) {

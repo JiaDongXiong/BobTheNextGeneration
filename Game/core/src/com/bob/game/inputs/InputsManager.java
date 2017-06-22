@@ -17,7 +17,6 @@ public class InputsManager {
     private int curRuleIndex = 0;
 	private GameController gameController;
 	private boolean prevRules = true;
-	//private TextButton button;
 
     public InputsManager() {
         this.rules = new Rule[noRulesPerPage]; 	//rules on one page
@@ -161,6 +160,13 @@ public class InputsManager {
             rule.toggleLights();
         }
     }
+    
+    // set up the rule blocks according to a given rule index
+    public void setRule(int ruleIndex, Block[] blocks) {
+    	rules[ruleIndex].setRuleBlocks(blocks);
+    	layer.addTargets(rules[ruleIndex].getTargets());
+        rules[ruleIndex].displayImages(true);
+	}
 
     // has the ability to choose
     public void setupRules(int noRules, Block[][] newRules, boolean draggable) {
@@ -447,7 +453,7 @@ public class InputsManager {
 			allRules.get(i+noRulesPerPage).setRuleBlocks(page2[i]);
 		}
 	}
-	
+
 	/*private Block[][] append(Block[][] a, Block[][] b) {
 		Block[][] result = new Block[a.length + b.length][];
         System.arraycopy(a, 0, result, 0, a.length);

@@ -40,9 +40,9 @@ public enum Block {
     WAIT("wait", "pause", Type.CONSEQUENT, "Bob should wait"),
 
     // Connectors
-    AND(" & ", "and", Type.AND, "AND, to be used in: if a AND b"),
+    AND("&", "and", Type.AND, "AND, to be used in: if a AND b"),
     NOT("!", "not", Type.NOT, "NOT, to be used in: NOT a"),
-	IMPLY(" -> ", "imply", Type.IMPLY, "IMPLY/THEN, to be used in: if a THEN b");
+	IMPLY("->", "imply", Type.IMPLY, "IMPLY/THEN, to be used in: if a THEN b");
 	
     private final String LPSString;
     private final String imageName;

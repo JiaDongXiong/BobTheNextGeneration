@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -349,6 +348,20 @@ public class Menu {
         	
         });
         editorGroup.addActor(button);
+        
+        button = new TextButton("help", skin, "green_button");
+        button.setBounds(1150, 860, 100, 70);
+        button.addListener(new ClickListener() {
+        	
+        	@Override
+            public void clicked(InputEvent ie, float x, float y) {
+            }
+        	
+        });
+        editorGroup.addActor(button);
+        
+        
+        
         // ***************************************************************** \\
         
         button = new TextButton("Load Existing Map", skin, "grey_button");
