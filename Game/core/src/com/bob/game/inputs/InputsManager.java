@@ -119,6 +119,10 @@ public class InputsManager {
         return res.toString();
     }
     
+    public String getRuleStringForDisplay(int index) {
+    	return rules[index].getStringForDisplay();
+	}
+    
     public ArrayList<String> getRulesStringForDisplay() {
     	ArrayList<String> res = new ArrayList<String>();
     	for (int i = 0; i < noRulesPerPage; i++) {

@@ -182,18 +182,6 @@ public class Main extends ApplicationAdapter {
 	    generator.dispose();
 	    skin.add("val", font);
 	    
-	    /*generator = new FreeTypeFontGenerator(Gdx.files.internal("font/Chunkfive.otf"));
-	    parameter.size = 48;
-	    parameter.borderWidth = 1;
-	    parameter.color = Color.DARK_GRAY;
-	    parameter.shadowOffsetX = 0;
-	    parameter.shadowOffsetY = 0;
-	    parameter.shadowColor = Color.GRAY;
-	    font = generator.generateFont(parameter);
-	    generator.dispose();
-	    skin.add("chunk", font);*/
-		
-	    
 	    BitmapFont whiteFont = new BitmapFont(Gdx.files.internal("font/white.fnt"));
 		whiteFont.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 		whiteFont.getData().scale(-0.2f);

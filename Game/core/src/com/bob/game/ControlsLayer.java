@@ -21,10 +21,17 @@ class ControlsLayer extends Layer {
     private final TextButton lpsButton;
     private final TextButton causalButton;
     private final TextButton macroButton;
+    private final TextButton textualButton;
     
     private final Slider slider;
-    private boolean pressed = false;
-    private Group buttonGroup = new Group();
+    private boolean textMenuPressed = false; 	//for textual menu
+    private boolean lpsMenuPressed = false; 	//for lps menu
+    private boolean macroPressed = false; 		//for macro button
+    private boolean loadPressed = false; 		//for textual load button
+    private Group buttonGroup = new Group(); 	//manage all macro groups
+    private Group textbuttonGroup = new Group(); 	//manage all macro groups
+    private Group lpsMenuGroup = new Group(); 	//lps menu buttons
+    private Group textMenuGroup = new Group(); 	//textual menu buttons
 
     public ControlsLayer(final Skin skin, final GameController controller) {
         TextButton quitButton = new TextButton("BACK", skin, "blue_button");
@@ -99,8 +106,71 @@ class ControlsLayer extends Layer {
             }
         });
         group.addActor(helpButton);
-
+        
+        
         // ----------
+        // TEXTUAL Menu
+        textualButton = new TextButton("Textual Rule", skin, "blue_button");
+        textualButton.setBounds(830, 10, 300, 60);
+        textualButton.addListener(new ClickListener() {
+            public void clicked(InputEvent ie, float x, float y) {
+                if (!textualButton.isDisabled()) {
+                	textMenuPressed = !textMenuPressed;
+                	displayTextMenu(textMenuPressed);
+                }
+            }
+        });
+        group.addActor(textualButton);
+        
+        TextButton newRuleButton = new TextButton("New", skin, "green_button");
+        newRuleButton.setBounds(830, 75, 145, 60);
+        newRuleButton.addListener(new ClickListener() {
+            public void clicked(InputEvent ie, float x, float y) {
+                if (!newRuleButton.isDisabled()) {
+                	controller.displayTextual(-1);
+                	resetLoadTextual();
+                }
+            }
+        });
+        textMenuGroup.addActor(newRuleButton);
+        
+        TextButton oldRuleButton = new TextButton("Load", skin, "orange_button") {
+            @Override
+            public void draw(Batch batch, float parentAlpha) {
+            	this.setDisabled(controller.noOfRules()==0);
+                super.draw(batch, parentAlpha);
+            }
+        };
+        oldRuleButton.setBounds(985, 75, 145, 60);
+        oldRuleButton.addListener(new ClickListener() {
+            public void clicked(InputEvent ie, float x, float y) {
+                if (!oldRuleButton.isDisabled()) {
+                	addTextualButtons(skin, controller);
+                }
+            }
+        });
+        textMenuGroup.addActor(oldRuleButton);
+        
+        group.addActor(textMenuGroup);
+        textMenuGroup.setVisible(false);
+        //////////////////
+        
+
+        //////////////////
+        // LPS Menu button
+        // ----------
+        TextButton lpsMenuButton = new TextButton("LPS", skin, "blue_button");
+        lpsMenuButton.setBounds(515, 10, 300, 60);
+        lpsMenuButton.addListener(new ClickListener() {
+            public void clicked(InputEvent ie, float x, float y) {
+                if (!lpsMenuButton.isDisabled()) {
+                	lpsMenuPressed = !lpsMenuPressed;
+                	displayLPSMenu(lpsMenuPressed);
+                }
+            }
+        });
+        group.addActor(lpsMenuButton);
+        
         // LPS BUTTON
         lpsButton = new TextButton("LPS Rules", skin, "blue_button") {
             @Override
@@ -109,7 +179,7 @@ class ControlsLayer extends Layer {
                 super.draw(batch, parentAlpha);
             }
         };
-        lpsButton.setBounds(515, 10, 240, 60);
+        lpsButton.setBounds(515, 75, 300, 60);
         lpsButton.addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
                 if (!lpsButton.isDisabled()) {
@@ -117,10 +187,10 @@ class ControlsLayer extends Layer {
                 }
             }
         });
-        group.addActor(lpsButton);
+        lpsMenuGroup.addActor(lpsButton);
         
         causalButton = new TextButton("Causal Theory", skin, "blue_button");
-        causalButton.setBounds(765, 10, 300, 60);
+        causalButton.setBounds(515, 140, 300, 60);
         causalButton.addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
                 if (!causalButton.isDisabled()) {
@@ -128,7 +198,7 @@ class ControlsLayer extends Layer {
                 }
             }
         });
-        group.addActor(causalButton);
+        lpsMenuGroup.addActor(causalButton);
         
         
         macroButton = new TextButton("Macro", skin, "blue_button") {
@@ -138,7 +208,7 @@ class ControlsLayer extends Layer {
                 super.draw(batch, parentAlpha);
             }
         };
-        macroButton.setBounds(1075, 10, 170, 60);
+        macroButton.setBounds(515, 205, 300, 60);
         macroButton.addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
                 if (!macroButton.isDisabled()) {
@@ -146,9 +216,11 @@ class ControlsLayer extends Layer {
                 } 
             }
         });
-        group.addActor(macroButton);
+        lpsMenuGroup.addActor(macroButton);
+        group.addActor(lpsMenuGroup);
+        lpsMenuGroup.setVisible(false);
         // ----------
-        
+        ////////////////////
 
         // RESET BUTTON
         resetButton = new TextButton("RESET ALL", skin, "orange_button");
@@ -273,22 +345,71 @@ class ControlsLayer extends Layer {
         /////////////////////////////////////////////////////////////////////////
     }
     
-    // add macro buttons
-    private void addMacroButtons(Skin skin, final GameController controller) {
-    	group.removeActor(buttonGroup);
-    	if (pressed) { 
-    		pressed = !pressed;
+    protected void displayLPSMenu(boolean b) {
+    	//if macros are displayed when lpsMenu is not, reset them
+    	if (b == false) {
+    		resetMacros();
+    	}
+    	lpsMenuGroup.setVisible(b);
+	}
+    
+    protected void displayTextMenu(boolean b) {
+    	//if rules are displayed when textMenu is not, reset them
+    	if (b == false) {
+    		resetLPSMenu();
+    	}
+    	textMenuGroup.setVisible(b);
+	}
+    
+    // add textual rule buttons for loading
+    protected void addTextualButtons(Skin skin, final GameController controller) {
+    	group.removeActor(textbuttonGroup);
+    	if (loadPressed) { 
+    		loadPressed = !loadPressed;
     		return; 
     	}
     	
-    	int x = 1075;
-    	int y = 80;
+    	int x = 1135;
+    	int y = 75;
     	int height = 60;
-    	int width = 170;
+    	int width = 145;
     	int noRules = controller.noOfRules();
     	for (int i=0; i<noRules; i++) {
     		final int index = i;
-    		TextButton button = new TextButton("Rule"+(i+1), skin, "grey_button");
+    		TextButton button = new TextButton("Rule"+(i+1), skin, "blue_button");
+            button.setBounds(x, y, width, height);
+            button.addListener(new ClickListener() {
+            	@Override
+                public void clicked(InputEvent ie, float x, float y) {
+            		controller.displayTextual(index);
+            		resetLoadTextual();
+                }
+            });
+            textbuttonGroup.addActor(button);
+            y+=(height+5);
+    	}
+    	
+    	group.addActor(textbuttonGroup);
+    	loadPressed = !loadPressed;
+    }
+    
+
+	// add macro buttons
+    protected void addMacroButtons(Skin skin, final GameController controller) {
+    	group.removeActor(buttonGroup);
+    	if (macroPressed) { 
+    		macroPressed = !macroPressed;
+    		return; 
+    	}
+    	
+    	int x = 820;
+    	int y = 205;
+    	int height = 60;
+    	int width = 160;
+    	int noRules = controller.noOfRules();
+    	for (int i=0; i<noRules; i++) {
+    		final int index = i;
+    		TextButton button = new TextButton("Rule"+(i+1), skin, "blue_button");
             button.setBounds(x, y, width, height);
             button.addListener(new ClickListener() {
             	@Override
@@ -301,7 +422,7 @@ class ControlsLayer extends Layer {
     	}
     	
     	group.addActor(buttonGroup);
-    	pressed = !pressed;
+    	macroPressed = !macroPressed;
     }
 
     public void setSpeedFactor(float factor) {
@@ -320,17 +441,31 @@ class ControlsLayer extends Layer {
         this.hintButton.setVisible(disabled);
     }
     
+    public void reset() {
+    	resetTextMenu();
+    	resetLPSMenu();
+    }
+    
     public void resetMacros() {
-    	//buttonGroup.setVisible(false);
     	group.removeActor(buttonGroup);
-        pressed = false;
+    	macroPressed = false;
     }
     
-    public void disableLPS(boolean disabled) {
-        this.lpsButton.setVisible(disabled);
-        this.causalButton.setVisible(disabled);
-        group.removeActor(buttonGroup);
-        pressed = false;
+    public void resetLoadTextual() {
+    	group.removeActor(textbuttonGroup);
+    	loadPressed = false;
     }
     
+    public void resetLPSMenu() {
+    	resetMacros();
+    	lpsMenuGroup.setVisible(false);
+    	lpsMenuPressed = false;
+    }
+    
+    public void resetTextMenu() {
+    	resetLoadTextual();
+    	textMenuGroup.setVisible(false);
+    	textMenuPressed = false;
+    }
+        
 }

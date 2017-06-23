@@ -14,10 +14,13 @@ public class TextLayer extends Layer {
 	
 	//textual rule
 	private final TextField textField;
+	private final TextField indexField;
+	private String iniRule = "isIn(X,Y) & ";
+	private String[] acceptedIndex = new String[]{"1","2","3","4"};  // valid rule slot index
 	
 	public TextLayer(Skin skin, GameController gameController) {
 		
-		//initialVisibility = false;
+		initialVisibility = false;
 		Image foreground = new Image(TextureFactory.createTexture("screens/textual.png"));
 		group.addActor(foreground);
 		
@@ -30,8 +33,9 @@ public class TextLayer extends Layer {
 	        	   clearText();
 	           };
 	    });
-		button.setBounds(500, 110, 250, 70);
+		button.setBounds(370, 110, 250, 70);
 		addActor(button);
+		////////////////////////
 		
 		// submit button
 		button = new TextButton("SUBMIT", skin, "green_button");
@@ -43,25 +47,30 @@ public class TextLayer extends Layer {
 	        	   clearText();
 	           };
 	    });
-		button.setBounds(1200, 110, 250, 70);
+		button.setBounds(1060, 110, 250, 70);
 		addActor(button);
+		////////////////////
 		
-		// textual rule textfield
 		TextField.TextFieldStyle textFieldStyle = new TextField.TextFieldStyle();
         textFieldStyle.font = skin.getFont("val");
         textFieldStyle.fontColor = Color.WHITE;
         textFieldStyle.cursor = new Image(TextureFactory.createTexture("buttons/cursor.png")).getDrawable();
 
-        textField = new TextField("Enter Your Textual Rule Here", textFieldStyle);
-        textField.setBounds(370, 220, 1210, 80);
-
+        // textual rule textfield
+        textField = new TextField(iniRule, textFieldStyle);
+        textField.setBounds(300, 218, 1075, 80);
         addActor(textField);
+        
+        // choose the index of the rule
+        indexField = new TextField("RuleNo", textFieldStyle);
+        indexField.setBounds(1500, 218, 160, 80);
+        addActor(indexField);
 		
 	}
 	
 	protected void submit(GameController gameController) {
 		
-		String rule = getText();
+		String rule = getRuleText();
 		char[] cArray = rule.toCharArray();
 		String curString = "";
 		// 14 blocks per rule slot
@@ -69,6 +78,11 @@ public class TextLayer extends Layer {
 		int blockIndex = 0;
 		
 		for (char c:cArray) {
+			// the first clause will be isIn(X,Y)& otherwise not valid
+			if (curString.equals("isIn(X,Y)&")) {
+				curString = "";
+			}
+			
 			// ignore spaces
 			if (c == ' ') {
 				continue;
@@ -85,8 +99,18 @@ public class TextLayer extends Layer {
 			
 		}
 		//TODO
-		gameController.setRuleBlocks(blocks, 0);
+		Integer ruleIndex = indexCheck();
+		gameController.setRuleBlocks(blocks, ruleIndex);
 		
+	}
+	
+	private Integer indexCheck() {
+		for (String index:acceptedIndex) {
+			if (index.equals(indexField.getText())) {
+				return Integer.valueOf(index)-1;
+			}
+		}
+		return -1; // no rules get changed
 	}
 	
 	private Block blockCheck(String s) {
@@ -103,19 +127,22 @@ public class TextLayer extends Layer {
 	}
 	
 	// load existing rule strings for that index
-	public void initialize() {
-		
+	public void initialize(int i, String rule) {
+		String completeRule = "isIn(X,Y) & " + rule; //for completeness of the rule
+		setRuleText(completeRule);
+		indexField.setText(Integer.toString(i+1));
 	}
 	
 	public void clearText() {
-		textField.setText("Enter Your Textual Rule Here");
+		textField.setText(iniRule);
+		indexField.setText("RuleNo");
 	}
 
-	public String getText() {
+	public String getRuleText() {
 		return textField.getText();
 	}
 	
-	public void setText(String text) {
+	public void setRuleText(String text) {
         textField.setText(text);
     }
 

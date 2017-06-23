@@ -79,7 +79,7 @@ public class GameController {
     }
 
     public void startNewLevel() {
-    	controls.resetMacros();
+    	controls.reset();
     	layerGroup.show();
         currentHint = 0;
         inputsManager.resetRules();
@@ -260,6 +260,22 @@ public class GameController {
 		macro.setVisibe(true);
 	}
 	
+	public void displayExamples() {
+		examples.setVisibility(true);
+	}
+	
+	public void displayTextual(int index) {
+		if (index > -1) {
+			textual.initialize(index, getLPSRule(index));
+		}
+		textual.setVisibility(true);
+	}
+	
+	// get displaying rule string for a given rule index
+    protected String getLPSRule(int index) {
+    	return inputsManager.getRuleStringForDisplay(index);
+    }
+	
     public int noOfRules() {
     	return inputsManager.noOfRules();
     }
@@ -294,6 +310,9 @@ public class GameController {
 	}
     
     public void setRuleBlocks(Block[] blocks, int ruleIndex) {
+    	if (ruleIndex < 0) {
+    		return;
+    	}
     	inputsManager.setRule(ruleIndex, blocks);
     }
     
@@ -318,9 +337,5 @@ public class GameController {
         ((HelpScreen)layerGroup.get("help screen")).setImages(res);
         layerGroup.setVisibility("help screen", true);
     }
-
-	public void displayExamples() {
-		examples.setVisibility(true);
-	}
 
 }
