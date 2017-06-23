@@ -22,6 +22,7 @@ class ControlsLayer extends Layer {
     private final TextButton causalButton;
     private final TextButton macroButton;
     private final TextButton textualButton;
+    private final TextButton exampleButton;
     
     private final Slider slider;
     private boolean textMenuPressed = false; 	//for textual menu
@@ -83,7 +84,7 @@ class ControlsLayer extends Layer {
         
         // ----------
         // example BUTTON
-        TextButton exampleButton = new TextButton("EXAMPLES", skin, "rock_button");
+        exampleButton = new TextButton("EXAMPLES", skin, "rock_button");
         exampleButton.setBounds(880, 930, 220, 60);
         exampleButton.addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
@@ -310,7 +311,7 @@ class ControlsLayer extends Layer {
         final TextButton nextRulePage = new TextButton(">", skin, "green_square_button") {
             @Override
             public void draw(Batch batch, float parentAlpha) {
-            	this.setDisabled(controller.isOnwhichPage(1));
+            	this.setDisabled(controller.isOnwhichPage(1)); //&& controller.getNoOfAvaliRules()>4);
                 super.draw(batch, parentAlpha);
             }
         };
@@ -427,6 +428,10 @@ class ControlsLayer extends Layer {
 
     public void setSpeedFactor(float factor) {
     	slider.setValue(factor);
+    }
+    
+    public void displayExample(boolean disabled) {
+        this.exampleButton.setVisible(disabled);
     }
     
     public void disableSubmit(boolean disabled) {

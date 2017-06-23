@@ -91,12 +91,14 @@ public class GameController {
         }
 
         if (currentLevel.allowMacro()) {
+        	controls.displayExample(false);
             layerGroup.setVisibility("macro", true);
             layerGroup.setVisibility("inputs", false);
 
             macroManager.resetMacros();
             macroManager.resetMacroInputs();
         } else {
+        	controls.displayExample(true);
             layerGroup.setVisibility("macro", false);
             layerGroup.setVisibility("inputs", true);
             if (getCurrGameMode().equals("READ")) {
@@ -303,6 +305,10 @@ public class GameController {
     
     public String getCurrGameMode() {
     	return currentLevel != null ? currentLevel.getGameMode() : "";
+    }
+    
+    public int getNoOfAvaliRules() {
+    	return currentLevel != null ? currentLevel.getNoRules() : 8;
     }
     
     public void loadEditor(EditorController editorController) {

@@ -24,6 +24,7 @@ public abstract class Level {
 
     public Level(XmlReader.Element root) {
         XmlReader.Element bobNode = root.getChildByName("bob");
+        XmlReader.Element ruleNoNode = root.getChildByName("rules");
 
         this.root = root;
         this.gameMode = root.getAttribute("type");
@@ -36,6 +37,7 @@ public abstract class Level {
         this.tutorialImages = extractStrings(root.getChildByName("tutorial"));
 
         this.noRules = 8;
+        //this.noRules = Integer.parseInt(ruleNoNode.get("avaliable"));
         this.inputs = new Block[]{};
         this.rules = new Block[][]{};
         this.fileName = null;

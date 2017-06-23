@@ -58,8 +58,6 @@ public class Main extends ApplicationAdapter {
 		editorController = new EditorController(skin, camera, manager);
 		menu = new Menu(skin, manager, editorController, gameController);
 		
-		//manager.setUpGameController(gameController);
-
 		editorController.linkStage(stage);
 		gameController.linkStage(stage);
 		menu.setStage(stage);
@@ -134,7 +132,6 @@ public class Main extends ApplicationAdapter {
 		// Stage
      	stage.act(deltaTime);
      	stage.draw();
-     	//stage.setDebugAll(true);
      	
      	if (gameState == GameState.EDITTING) {
 			editorController.render();
