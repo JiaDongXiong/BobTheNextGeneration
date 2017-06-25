@@ -1,13 +1,13 @@
 package com.bob.game;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.bob.main.TextureFactory;
 
@@ -22,15 +22,15 @@ public class HelpScreen extends Layer {
 
         imageGroup = new Group();
         group.addActor(imageGroup);
-
-        TextButton nextButton = new TextButton("NEXT", skin, "big_grey_button");
-        nextButton.setBounds(810, 15, 300, 100);
-        nextButton.addListener(new ClickListener() {
+        
+        Actor actor = new Actor();
+		actor.setBounds(0, 0, 1920, 1080);
+		actor.addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
-                next();
+            	next();
             }
         });
-        group.addActor(nextButton);
+		group.addActor(actor);
 
         group.setVisible(false);
     }
@@ -40,6 +40,7 @@ public class HelpScreen extends Layer {
         setImages(new String[]{path});
     }
 
+    // load up all tutorial images
     public void setImages(String[] imagePaths) {
         imageGroup.clear();
         images = new Image[imagePaths.length];
@@ -53,6 +54,7 @@ public class HelpScreen extends Layer {
         images[0].setVisible(true);
     }
 
+    // go to next tutorial screen if any
     private void next() {
         if (current + 1 >= images.length) {
             hide();
@@ -78,6 +80,7 @@ public class HelpScreen extends Layer {
         });
     }
 
+    // hide all images
     private void hide() {
         current = 0;
         images[images.length - 1].setVisible(false);

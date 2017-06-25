@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.bob.game.inputs.Block;
 import com.bob.mapEditor.BackGroundLayer;
 import com.bob.mapEditor.EditorLayer;
+import com.bob.mapEditor.EditorManualLayer;
 import com.bob.mapEditor.LoadingLayer;
 import com.bob.mapEditor.MapEditor;
 import com.bob.mapEditor.ReadLayer;
@@ -17,6 +18,7 @@ public class EditorController {
 	Block[] bList = {Block.WHITE, Block.RED};
 	boolean isVisible = false;
 	boolean isTrying = false;
+	boolean isGuideShown = false;
 	private idManager manager;
 	
 	public EditorController(Skin skin, OrthographicCamera camera, idManager manager) {
@@ -25,6 +27,7 @@ public class EditorController {
 		layerGroup.add("editor", new EditorLayer(skin));
 		layerGroup.add("read", new ReadLayer(skin));
 		layerGroup.add("loading", new LoadingLayer(skin));
+		layerGroup.add("guide", new EditorManualLayer(skin, this));
 		
 		int noOfUIs = ((EditorLayer)layerGroup.get("editor")).getUINum();
 		
@@ -54,7 +57,7 @@ public class EditorController {
 		if (manager.getShowRead()) {
 			manager.toggleLights();
 		}
-		if (!manager.isLoadingShown()) {
+		if (!manager.isLoadingShown() && !isGuideShown) {
 			mapEditor.render();
 		}
 	}
@@ -80,12 +83,25 @@ public class EditorController {
 		return isVisible;
 	}
 	
+	// are we currently in trying mode?
 	public boolean isTrying() {
 		return isTrying;
 	}
 	
 	public void setTrying(boolean b) {
 		isTrying = b;
+	}
+
+	// show user guide in map editor
+	public void displayUserGuide() {
+		layerGroup.get("guide").setVisibility(true);
+		isGuideShown = true;
+		manager.hideUIAndMap();
+	}
+	
+	public void setGuideShown(boolean b) {
+		isGuideShown = b;
+		manager.showUIAndMap();
 	}
 	
 }

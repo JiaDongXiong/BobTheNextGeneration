@@ -145,7 +145,7 @@ public class idManager {
 	public boolean isLoadingShown() {
 		return isLoadingShown;
 	}
-	 
+	
 	private void displayMacroModal() {
 		inputsManager.setUpRulesForRead(rulesArray, true);
 		inputsManager.setupInputs(Block.values(), 1404, 1080 - 215);
@@ -284,7 +284,7 @@ public class idManager {
 		}
 	}
 	
-	private void hideUIAndMap() {
+	public void hideUIAndMap() {
 		UIGroup.setVisible(false);
 		mapEditor.setVisible(false);
 	}
@@ -413,5 +413,7 @@ public class idManager {
 	public void prevRulePage() {
 		inputsManager.prevPage(false);
 	}
+
+	
 	
 }

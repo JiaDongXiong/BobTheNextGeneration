@@ -246,11 +246,13 @@ public class GameController {
     	}
     }
     
+    // set the visibility of the lps rules layer to true
     public void displayLPS() {
     	layerGroup.setVisibility("lps", true);
     	lps.setVisibe(true);
     }
     
+    // set the visibility of the causal layer to true
 	public void displayCausal() {
 		layerGroup.setVisibility("causal", true);
 		causal.setVisibe(true);
@@ -262,6 +264,7 @@ public class GameController {
 		macro.setVisibe(true);
 	}
 	
+	// set the visibility of the examples layer to true
 	public void displayExamples() {
 		examples.setVisibility(true);
 	}
@@ -283,30 +286,37 @@ public class GameController {
     }
     //////////////////////////////////////////////////
     
+    // return the current rule page index
     public boolean isOnwhichPage(int index) {
     	return inputsManager.isOnwhichPage(index);
     }
     
+    // clear a rule with a given index
     public void clearRule(int index) {
     	inputsManager.clearRule(index);
     }
     
+    // turn to the next rule page
     public void nextRulePage() {
     	inputsManager.nextPage(true);
     }
     
+    // turn to the previous rule page
     public void prevRulePage() {
     	inputsManager.prevPage(true);
     }
     
+    // does the current map has a golden tile?
     public boolean hasGoldTile() {
     	return worldController.hasGoldTile();
     }
     
+    // return the game mode type of the current level
     public String getCurrGameMode() {
     	return currentLevel != null ? currentLevel.getGameMode() : "";
     }
     
+    // return number of available rules
     public int getNoOfAvaliRules() {
     	return currentLevel != null ? currentLevel.getNoRules() : 8;
     }
@@ -325,6 +335,7 @@ public class GameController {
     // ----------------------------------------- \\
     ///////////////////////////////////////////////
 
+    // display provided hints
     public void displayHints() {
         if (currentLevel.hasHints()) {
             ((MessageLayer) layerGroup.get("message")).changeText(currentLevel.getHints()[currentHint]);
@@ -333,12 +344,11 @@ public class GameController {
         }
     }
 
+    // display user manuals
     public void displayHelp() {
-        int n = currentLevel.hasTutorial() ? currentLevel.getTutorialImages().length : 0;
-        String[] res = new String[n + 1];
-
-        System.arraycopy(currentLevel.getTutorialImages(), 0, res, 0, n);
-        res[n] = "screens/help.png";
+        String[] res = new String[2];
+        res[0] = "screens/userManualOne.png";
+        res[1] = "screens/userManualTwo.png";
 
         ((HelpScreen)layerGroup.get("help screen")).setImages(res);
         layerGroup.setVisibility("help screen", true);

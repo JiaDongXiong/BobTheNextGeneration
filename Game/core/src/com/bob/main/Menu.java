@@ -31,7 +31,6 @@ public class Menu {
     private final Group modeGroup = new Group();
     private final Group settingsGroup = new Group();
     private final Group levelsGroup = new Group();
-    //private final Group storeGroup = new Group();
     private final Group editorGroup = new Group();
     private boolean isVisible = true;
     private Level levelSelected;
@@ -39,7 +38,6 @@ public class Menu {
     private Integer enterFromPlay = null; // 1: enter from play, 2: enter from levels , else null
     private final EditorController editorController;
     private final GameController gameController;
-    //private idManager manager;
     
     private Label label;
     private String defaultFileName = "DEF";
@@ -52,20 +50,19 @@ public class Menu {
         initMode(skin);
         initSettings(skin);
         initEditor(skin, manager);
-        //initStore(skin);
         
-        //this.manager = manager;
         this.editorController = editorController;
         this.gameController = gameController;
     }
 
+    // initialize the main menu UIs
     private void initMenu(final Skin skin) {
         // Bkg
         Image menuBkg = new Image(TextureFactory.createTexture("screens/menu.png"));
         menuBkg.setBounds(0,0, 1920, 1080);
         menuGroup.addActor(menuBkg);
 
-        // Menu button
+        // Menu buttons
         String[] menu = {"PLAY", "LEVELS", "SETTINGS", "EDITOR", "QUIT"};
 
         Map<String, Button> buttons = addButtons(menuGroup, skin, menu);
@@ -129,15 +126,6 @@ public class Menu {
         return buttons;
     }
     
-    /*private void initStore(Skin skin) {
-    	Image foreground = new Image(TextureFactory.createTexture("screens/store.jpg"));
-        foreground.setBounds(0, 0, 800, 800);
-        storeGroup.addActor(foreground);
-        
-        addBackButton(skin, storeGroup);
-        storeGroup.setVisible(false);
-    }*/
-    
     private void initEditor(final Skin skin, final idManager manager) {
     	iniUIStuff(skin);
     	addEditorButtons(skin, manager);
@@ -146,6 +134,7 @@ public class Menu {
     	manager.setUpUI(editorGroup, textField, label);
     }
     
+    // save the designed map in an XML file and store locally
     private void saveMap(idManager manager) {
     	try {
     		FileHandle file = Gdx.files.local("levels/custom/" + customFileName + ".xml");
@@ -349,12 +338,14 @@ public class Menu {
         });
         editorGroup.addActor(button);
         
-        button = new TextButton("help", skin, "green_button");
+        // Map Editor User Guide Button
+        button = new TextButton("Help", skin, "green_button");
         button.setBounds(1150, 860, 100, 70);
         button.addListener(new ClickListener() {
         	
         	@Override
             public void clicked(InputEvent ie, float x, float y) {
+        		editorController.displayUserGuide();
             }
         	
         });
@@ -463,7 +454,7 @@ public class Menu {
 
         String[] menu = {"WRITER", "READER", "MACRO"};
         Map<String, Button> buttons = addButtons(modeGroup, skin, menu);
-
+        
         buttons.get("WRITER").addListener(new ClickListener() {
             public void clicked(InputEvent ie, float x, float y) {
                 int lvlIndex = 0;
@@ -676,7 +667,6 @@ public class Menu {
         stage.addActor(modeGroup);
         stage.addActor(settingsGroup);
         stage.addActor(editorGroup);
-        //stage.addActor(storeGroup);
     }
 
 	public void quitFromPlaying() {
